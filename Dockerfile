@@ -18,6 +18,15 @@ ENV HOME=/${WORKDIR} \
 
 WORKDIR ${HOME}
 
+# packeage.jsonをコンテナにコピー
+# コンテナにパッケージをコピー
+COPY package*.json ./
+RUN yarn install
+# nuxtプロジェクト一式をコンテナにコピー
+COPY . ./
+# webpackでコンパイル Vue → javascript
+RUN yarn run build
+
 # 公開用ポート番号を指定
 # http://localhost(0.0.0.0)3000
 # デフォで設定されているのでコメントアウト
