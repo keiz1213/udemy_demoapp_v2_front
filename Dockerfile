@@ -2,13 +2,15 @@
 FROM node:16.13.1-alpine
 
 ARG WORKDIR
+ARG API_URL
 # ARG CONTAINER_PORT
 
 ENV HOME=/${WORKDIR} \
     LANG=C.UTF-8 \
     TZ=Asia/Tokyo \
     # 外部(ブラウザ)から(コンテナ内のnuxtに)参照できるように
-    HOST=0.0.0.0
+    HOST=0.0.0.0 \
+    API_URL=${API_URL}
 
 # ENV check（このRUN命令は確認のためなので無くても良い）
 # RUN echo ${HOME}
