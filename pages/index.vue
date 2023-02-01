@@ -1,42 +1,55 @@
-<!-- <template>
-  <Tutorial />
-</template>
-
-<script>
-export default {
-  name: 'IndexPage'
-}
-</script> -->
-
 <template>
   <div>
-    <button
-      type="button"
-      name="button"
-      @click="getMsg"
-    >
-      RailsからAPIを取得する
-    </button>
-    <div
-      v-for="(msg, i) in msgs"
-      :key="i"
-    >
-      {{ msg }}
+    <h2>
+      Usersテーブルの取得
+    </h2>
+    <table v-if="users.length">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>name</th>
+          <th>email</th>
+          <th>created_at</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          v-for="(user, i) in users"
+          :key="`user-${i}`"
+        >
+          <td>{{ user.id }}</td>
+          <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ dateFormat(user.created_at) }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div v-else>
+      ユーザーが取得できませんでした
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  data () {
-    return {
-      msgs: []
-    }
+  // コンポーネントのデータを表示する前に実行されるメソッド
+  // このときのデータとはテンプレートタグにあるHTMLのこと
+  // 今回のHTMLはusersに依存するため
+  async asyncData ({ $axios }) {
+    let users = []
+    await $axios.$get('/api/v1/users')
+      .then(res => (users = res))
+    return { users }
   },
-  methods: {
-    getMsg () {
-      this.$axios.$get('/api/v1/hello')
-        .then(res => this.msgs.push(res))
+  computed: {
+    dateFormat () {
+      return (date) => {
+        const dateTimeFormat = new Intl.DateTimeFormat(
+          'ja', { dateStyle: 'medium', timeStyle: 'short' }
+        )
+        return dateTimeFormat.format(new Date(date))
+      }
     }
   }
 }
