@@ -1,0 +1,21 @@
+// custom変数 => https://vuetifyjs.com/en/customization/sass-variables/#sass-variables
+// Lightテーマのカスタマイズ
+$material-light: (
+  'background': #f6f6f4
+);
+// 独自のブレークポイントを追加する変数
+$grid-breakpoints: (
+  'ipad': 768px,
+  'mobile': 426px
+);
+// 独自のブレークポイントで表示・非表示を切り替えるcssクラスの追加
+$display-breakpoints: (
+  'ipad-and-down':
+  'only screen and (max-width: #{map-get($grid-breakpoints, 'ipad') - 1})',
+  'ipad-and-up':
+  'only screen and (min-width: #{map-get($grid-breakpoints, 'ipad')})',
+  'mobile-and-down':
+  'only screen and (max-width: #{map-get($grid-breakpoints, 'mobile') - 1})',
+  'mobile-and-up':
+  'only screen and (min-width: #{map-get($grid-breakpoints, 'mobile')})'
+);
