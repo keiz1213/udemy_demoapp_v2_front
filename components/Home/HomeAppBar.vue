@@ -9,11 +9,9 @@
     <app-logo
       @click.native="$vuetify.goTo('#scroll-top')"
     />
-    <v-toolbar-title
+    <app-title
       class="hidden-mobile-and-down"
-    >
-      {{ appName }}
-    </v-toolbar-title>
+    />
     <v-spacer />
 
     <v-toolbar-items class="ml-2 hidden-ipad-and-down">
@@ -62,7 +60,9 @@
 </template>
 
 <script>
+import AppTitle from '../App/AppTitle.vue'
 export default {
+  components: { AppTitle },
   props: {
     menus: {
       type: Array,
@@ -77,10 +77,9 @@ export default {
   },
   // dataの引数にはcontextなどのvue.jsが用意した引数を取ることができる
   // data (context: { $config: { appName: "Bizplanner" } })
-  data ({ $config: { appName }, $store }) {
+  data ({ $store }) {
     return {
       // 本来は appName: appName javascriptではキーとバリューが同じ場合省略気泡が使える
-      appName,
       scrollY: 0,
       homeAppBarHeight: $store.state.styles.homeAppBarHeight
     }
