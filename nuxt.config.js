@@ -81,6 +81,8 @@ export default {
   i18n: {
     locales: ['ja', 'en'],
     defaultLocale: 'ja',
+    // no_prefix => ルート名に__jaをついかしない
+    strategy: 'no_prefix',
     // Doc: https://kazupon.github.io/vue-i18n/api/#properties
     vueI18n: {
       // jaに翻訳データが無いときに参照する
