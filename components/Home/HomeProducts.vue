@@ -12,7 +12,10 @@
           <v-list-item-icon>
             <v-icon
               size="30"
-              :color="point.color" />
+              :color="point.color"
+            >
+              {{ point.icon }}
+            </v-icon>
           </v-list-item-icon>
           <v-list-item-content>
             <div
