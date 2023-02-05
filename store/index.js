@@ -25,7 +25,25 @@ export const state = () => ({
 export const getters = {}
 
 // stateの値を更新する場所
-export const mutations = {}
+export const mutations = {
+  // 引数の順番は固定
+  setCurrentProject (state, payload) {
+    state.project.current = payload
+  }
+}
 
 // メソッド
-export const actions = {}
+export const actions = {
+  // { state, getters, commit, dispath, rootState, rootGetters } actionではこれらの引数を取得できる
+  // state このfileのstate
+  // getters このfileのgetters
+  // commit このfileのmutations
+  // dispatcj このfaileのactions
+  // rootState store/index.jsのstate(他のファイルから取得するとき)
+  // rootGetters store/index.jsのgetters(ほかのファイルから取得するとき)
+  getCurrentProject ({ state, commit }, params) {
+    const id = Number(params.id)
+    const currentProject = state.project.list.find(project => project.id === id) || null
+    commit('setCurrentProject', currentProject)
+  }
+}
