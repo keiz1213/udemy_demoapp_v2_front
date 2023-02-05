@@ -13,6 +13,19 @@ class MyInject {
     const title = this.app.i18n.t(jsonPath)
     return title
   }
+
+  // 日付のフォーマット変換
+  dateFormat (dateStr) {
+    const dateTimeFormat = new Intl.DateTimeFormat(
+      'ja', { dateStyle: 'medium', timeStyle: 'short' }
+    )
+    return dateTimeFormat.format(new Date(dateStr))
+  }
+
+  // プロジェクトリンク
+  projectLinkTo (id, name = 'project-id-dashboard') {
+    return { name, params: { id } }
+  }
 }
 // inject => オリジナルクラスをnuxtに追加する事ができる。アプリ全体で使いたいメソッドなどを定義する
 // export default (context, inject) => 第一引数でnuxt.jsが用意しているcontext、第二引数でinjectが取得できる
