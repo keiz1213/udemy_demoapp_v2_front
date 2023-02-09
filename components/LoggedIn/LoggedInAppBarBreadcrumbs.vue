@@ -25,8 +25,12 @@ export default {
         { text: this.$my.pageTitle(currentRouteName) }
       ]
       // breakpoint.xs => 600未満にtrueを返す
-      if (currentRouteName.match(/project/) && !this.$vuetify.breakpoint.xs) {
-        const currentProject = this.$store.state.project.current
+      const currentProject = this.$store.state.project.current
+      if (
+        currentProject &&
+        currentRouteName.match(/project/) &&
+        !this.$vuetify.breakpoint.xs
+      ) {
         items.unshift({ text: currentProject.name })
       }
       return items
