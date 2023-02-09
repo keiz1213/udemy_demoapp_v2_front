@@ -57,6 +57,9 @@ export default {
 
     // 環境変数にAPI_URLを設定しているので優先的にそれが使われるためここでは設定不要
     // baseURL: '/'
+
+    // クロスドメインで認証情報を共有する
+    credentials: true
   },
 
   vuetify: {
