@@ -23,7 +23,6 @@
       <v-list-item>
         <v-list-item-content>
           <v-list-item-subtitle>
-            <!-- TODO -->
             {{ $auth.user.name }}
           </v-list-item-subtitle>
         </v-list-item-content>
