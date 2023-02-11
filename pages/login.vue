@@ -62,7 +62,7 @@ export default {
     },
     authFailure ({ response }) {
       if (response && response.status === 404) {
-        // TODO toast表示
+        return this.$store.dispatch('getToast', { msg: 'ユーザーが見つかりません' })
       }
       // TODO エラー処理
     }
