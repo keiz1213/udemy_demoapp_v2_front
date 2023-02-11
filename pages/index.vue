@@ -77,6 +77,8 @@ export default {
     HomeContact,
     HomeCompany
   },
+  // このpageはdefault.vueレイアウトを使用しているのでここでmiddlewareを指定
+  middleware: ['logged-in-redirect'],
   data () {
     return {
       imgHeight: 500,
